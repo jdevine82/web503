@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['cart'] = array_values($_SESSION['cart']);
    
 }
-echo var_dump($key);
-Redirect('/index.php', false);
+
+Redirect('/shoppinglist.php', false);
 ?>
 

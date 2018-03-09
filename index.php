@@ -1,9 +1,25 @@
 
 <?php
 // set
-$expiry = time()+3600;
- session_name("mysession");
-session_start( "mysessionvalue|$expiry", $expiry);
+$lifetime = (int)time()+3600;
+session_set_cookie_params (  $lifetime);
+session_start();
+//Expire the session if user is inactive for 30
+//minutes or more.
+$expireAfter = 60*24*7;
+ 
+function Redirect($url, $permanent = false)
+{
+    if (headers_sent() === false)
+    {
+        header('Location: ' . $url, true, ($permanent === true) ? 301 : 302);
+    }
+
+    exit();
+}
+ 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,71 +30,36 @@ session_start( "mysessionvalue|$expiry", $expiry);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Session Managment</title>
 <!-- Compressed CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" integrity="sha256-itWEYdFWzZPBG78bJOOiQIn06QCgN/F0wMDcC4nOhxY=" crossorigin="anonymous" />
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+<link rel="stylesheet" href='/custom.scss'/>
 <!-- Compressed JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
 </head>
 <body>
-<?php 
-if ($shoppinglist===null)  $shoppinglist= array(); //initialise the array
 
-$b=&$_SESSION['cart'];
-$a=0;
-
- if ($b!=null) {foreach ($b as $item) {
- $shoppinglist[$a]['item_name'] = $item['name'];
- $shoppinglist[$a]['item_qty']= $item['quantity'];
-  $a++;
- }}
- $new_item_number=count($shoppinglist);
- ?>
-
+<div class="grid-x  align-center">
+  
+  <div class="cell large-3 large-offset-4 ">
 
 <?php 
-// get
-if (isset($_SESSION["mysession"])) {
-   echo list($value, $expiry) = explode("|", $_SESSION["mysession"]);
-}
 
-if ($_SESSION['client']!=null) {echo 'Hi '.$_SESSION['client']; }
+if ($_SESSION['client']!=null) {Redirect('/shoppinglist.php', false);}
 else {
- echo '<form method="post" action="/addname.php"> 
-Plase Enter Your Name: <input type="text" name="client_name"> 
-<button type="submit">Add Name</button>
+ echo '<form method="post" action="/addname.php" class="log-in-form"> 
+<h4>Log in with your name</h4><input type="text" name="client_name"> 
+<button type="submit" class="button">Login</button>
 </form>';}?>
 
 
-
-<form method="post" action="/additem.php">  
-Item: <input type="text" name="item_name"> 
- Qty: <input type="number" name="item_qty">
- <input  type="hidden" name="item_index" value=<?php echo $new_item_number ?> >
- 
-  <input type="submit" name="submit" value="Add Item">  
-   <button type="submit" formaction="/destroy.php">destroy session</button>
-</form>
+ </div>
+</div>
 
 
 
- 
- <?php
- echo "<h2> Shopping List </h2>";
-if (shoppinglist!=null) { foreach ($shoppinglist as $x => $x_value) {
-   echo '<form method="post" action="remove.php">';
-    echo  "Item=".$x_value['item_name']." x ".$x_value['item_qty'];
-    echo '<input  type="hidden" name="item_index" value='.$x.' >';
-    echo '<button type="submit">Remove</button></form>';
-    echo "<br>";
-}}
- 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation-essential/6.2.2/css/app.css"></script>
 
-
-?>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.min.js"></script>
    <script>
     $(document).foundation();
   </script>

@@ -17,8 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $index = (int)test_input($_POST["item_index"]);
   $item_amount = test_input($_POST["item_qty"]);
   if (is_null($index)) {} else{ $_SESSION['cart'] [$index] = array('name' => $item, 'quantity' => $item_amount);
+  //Assign the current timestamp as the user's
+
   
-Redirect('/index.php', false);
+Redirect('/shoppinglist.php', false);
     
     }
     

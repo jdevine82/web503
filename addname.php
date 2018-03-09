@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = test_input($_POST["client_name"]);
   $_SESSION['client']=$name;
 }
-
-Redirect('/index.php', false);
+//Assign the current timestamp as the user's
+//latest activity
+$_SESSION['last_action'] = time();
+Redirect('/shoppinglist.php', false);
 ?>

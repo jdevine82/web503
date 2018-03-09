@@ -11,7 +11,7 @@ session_unset();
 
 // destroy the session
 session_destroy();
-Redirect('/index.php', false);
+Redirect('/shoppinglist.php', false);
 
 
 function Redirect($url, $permanent = false)
