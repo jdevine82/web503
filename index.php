@@ -4,6 +4,7 @@
 $lifetime = (int)time()+3600;
 session_set_cookie_params (  $lifetime);
 session_start();
+$_SESSION['last_action']=time(); //setup session timer
 //Expire the session if user is inactive for 30
 //minutes or more.
 $expireAfter = 60*24*7;
