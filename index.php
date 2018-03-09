@@ -44,7 +44,7 @@ if ($_SESSION['client']!=null)
     {Redirect('/shoppinglist.php', false);}
 else {
  echo '<form method="post" action="/addname.php" class="log-in-form"> 
-<Label class="label">Log in with your name<input type="text" name="client_name"> </label>
+<label>Log in with your name<input type="text" name="client_name"> </label>
 <button type="submit" class="button">Login</button>
 </form>';
 }?>
