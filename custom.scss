@@ -1,17 +1,5 @@
 @include foundation-everything(true);
 
-@include foundation-xy-grid-classes(
- 
-  $base-grid: true,
-  $margin-grid: true,
-  $padding-grid: true,
-  $block-grid: true,
-  $collapse: true,
-  $offset: true,
-  $vertical-grid: true,
-  $frame-grid: true
-  
-);
 
 .log-in-form {
   border: 1px solid $medium-gray;

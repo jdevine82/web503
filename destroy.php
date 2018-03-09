@@ -1,11 +1,6 @@
  <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<body>
 
-<?php
 // remove all session variables
 session_unset();
 
@@ -24,5 +19,4 @@ function Redirect($url, $permanent = false)
     exit();
 }
 ?>
-</body>
-</html> 
+ 
