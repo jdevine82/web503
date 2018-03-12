@@ -32,7 +32,7 @@ function Redirect($url, $permanent = false)
     <title>Session Managment</title>
     <!-- Compressed CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
-    <link rel="stylesheet" href='/custom.scss'/>
+
     <!-- Compressed JavaScript -->
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
 </head>

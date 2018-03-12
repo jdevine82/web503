@@ -12,7 +12,7 @@ if(isset($_SESSION['last_action'])){
     //Figure out how many seconds have passed
     //since the user was last active.
     $secondsInactive = time() - $_SESSION['last_action'];
-    
+  
     //Convert our minutes into seconds.
     $expireAfterSeconds = $expireAfter * 60;
     
@@ -52,7 +52,7 @@ if(isset($_SESSION['last_action'])){
     <title>Session Managment</title>
    <!-- Compressed CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
-  <link rel="stylesheet" href='/custom.scss'/>
+
   <!-- Compressed JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
 </head>
@@ -82,8 +82,8 @@ if(isset($_SESSION['last_action'])){
     echo '<br>You have been logged in for:'.$days.' days '.$hours.' hours '.$mins.' minutes '.$secs.' seconds ';
     echo '<br> <a href="destroy.php" class="button">Logout</a>';}
   else {
-    Redirect('/index.php', false);
-  } //if session has expired we need to redirect to main login.
+    Redirect('/index.php', false); //if session has expired we need to redirect to main login.
+  } 
    ?>
  <fieldset class="fieldset">
   <legend>Add Items to your cart</legend>
@@ -92,11 +92,11 @@ if(isset($_SESSION['last_action'])){
   <input type="text" name="item_name"> 
   </label>
   <input  type="hidden" name="item_index" value=<?php echo $new_item_number ?> >
-  <label>Qty
+  <h3>Qty</h3>
    <div class="grid-x grid-margin-x">
    <div class="cell small-5 large-4">
     <input type="number" min=1 value=1 name="item_qty">
-   </label>
+   
    </div>
    <div class="cell small-5 large-4">
     <input type="submit" name="submit" value="Add Item" class="button "> </input>
